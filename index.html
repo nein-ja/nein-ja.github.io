@@ -1,1 +1,509 @@
-Hell, Cuk!
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Saya</title>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #e5e7eb;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      min-height: calc(100vh - 88px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+      padding: 56px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: var(--primary-dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .intro {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 560px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary), #7c3aed);
+    }
+
+    .photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid white;
+      position: relative;
+      display: block;
+      margin: 44px auto 22px;
+      background: #e5e7eb;
+    }
+
+    .card-content {
+      text-align: center;
+      position: relative;
+    }
+
+    .card-content h2 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .bio {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+      text-align: left;
+      margin-top: 22px;
+    }
+
+    .info-item {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #f9fafb;
+    }
+
+    .info-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .skill h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .contact {
+      background: var(--text);
+      color: white;
+      border-radius: 28px;
+      padding: 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .contact p {
+      color: #d1d5db;
+      max-width: 620px;
+      margin-top: 8px;
+    }
+
+    .contact .btn {
+      background: white;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .intro,
+      .stats {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      .skills {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 36px 0;
+      }
+
+      .stats,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        padding: 22px;
+      }
+
+      .contact {
+        padding: 30px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">NamaSaya</a>
+
+        <div class="nav-links">
+          <a href="#tentang">Tentang</a>
+          <a href="#keahlian">Keahlian</a>
+          <a href="#kontak">Kontak</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="tentang">
+      <div>
+        <span class="badge">Available for Collaboration</span>
+
+        <h1>
+          Halo, saya <span class="highlight">Nama Kamu</span>
+        </h1>
+
+        <p class="intro">
+          Saya adalah seorang profesional di bidang digital, kreatif, dan teknologi.
+          Saya membantu membangun solusi yang rapi, efektif, dan berdampak melalui
+          desain, strategi, serta eksekusi yang terukur.
+        </p>
+
+        <div class="actions">
+          <a href="#kontak" class="btn btn-primary">Hubungi Saya</a>
+          <a href="#" class="btn btn-secondary">Download CV</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>3+</strong>
+            <span>Tahun pengalaman</span>
+          </div>
+          <div class="stat">
+            <strong>20+</strong>
+            <span>Proyek selesai</span>
+          </div>
+          <div class="stat">
+            <strong>10+</strong>
+            <span>Klien/partner</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <img
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80"
+          alt="Foto profil"
+          class="photo"
+        />
+
+        <div class="card-content">
+          <h2>Nama Kamu</h2>
+          <p class="role">Your Profession / Job Title</p>
+
+          <p class="bio">
+            Fokus pada kualitas, komunikasi yang jelas, dan hasil kerja yang
+            bisa digunakan secara nyata.
+          </p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <small>Lokasi</small>
+              Jakarta, Indonesia
+            </div>
+
+            <div class="info-item">
+              <small>Email</small>
+              emailkamu@example.com
+            </div>
+
+            <div class="info-item">
+              <small>LinkedIn</small>
+              linkedin.com/in/username
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="keahlian">
+      <div class="container">
+        <div class="section-title">
+          <h2>Keahlian Utama</h2>
+          <p>Area yang saya kuasai dan sering saya kerjakan.</p>
+        </div>
+
+        <div class="skills">
+          <div class="skill">
+            <h3>Web Development</h3>
+            <p>Membangun website modern, responsif, cepat, dan mudah digunakan.</p>
+          </div>
+
+          <div class="skill">
+            <h3>UI/UX Design</h3>
+            <p>Merancang tampilan yang bersih, profesional, dan berorientasi pengguna.</p>
+          </div>
+
+          <div class="skill">
+            <h3>Digital Strategy</h3>
+            <p>Menyusun pendekatan digital yang relevan dengan tujuan bisnis.</p>
+          </div>
+
+          <div class="skill">
+            <h3>Content & Branding</h3>
+            <p>Membantu membangun identitas personal atau brand yang konsisten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h2>Tertarik bekerja sama?</h2>
+            <p>
+              Hubungi saya untuk diskusi proyek, kolaborasi, peluang kerja,
+              atau konsultasi profesional.
+            </p>
+          </div>
+
+          <a href="mailto:emailkamu@example.com" class="btn">Kirim Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Nama Kamu. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
